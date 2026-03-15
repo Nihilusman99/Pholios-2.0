@@ -1345,7 +1345,7 @@ const galleryItems = [
   { id: "G08", type: "photo", label: "08", img: "/G08.jpg", h: 280, pos: "top" },
   { id: "G09", type: "graphic", label: "Showcase", img: "/G09.jpg", h: 320 },
   { type: "fragment", text: fragments[3] },
-  { id: "G10", type: "photo", label: "Sound chamber", img: "/G10.jpg", h: 240 },
+  { id: "G10", type: "photo", label: "Sound chamber", img: "/G10.jpg", h: 240, pos: "top" },
 ];
 
 // ── Gallery Helpers ───────────────────────────────────────────
