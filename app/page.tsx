@@ -1339,7 +1339,7 @@ const galleryItems = [
   { id: "G04", type: "graphic", label: "04", img: "/G04.JPG", h: 280 },
   { type: "fragment", text: fragments[1] },
   { id: "G05", type: "photo", label: "05", img: "/G05.JPG", h: 300 },
-  { id: "G06", type: "graphic", label: "06", img: "/G06.jpg", h: 260 },
+  { id: "G06", type: "graphic", label: "06", img: "/G06.jpg", h: 260, pos: "top" },
   { id: "G07", type: "photo", label: "07", img: "/G07.jpg", h: 340 },
   { type: "fragment", text: fragments[2] },
   { id: "G08", type: "photo", label: "08", img: "/G08.jpg", h: 280, pos: "top" },
