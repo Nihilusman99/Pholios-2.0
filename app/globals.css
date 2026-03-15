@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-warm-white: #FAFAF8;
+  --color-deep-charcoal: #1E1E1E;
+  --color-muted-slate: #6A7B8C;
+  --color-soft-ash: #C8D2D9;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+}
+
+body {
+  background-color: var(--color-warm-white);
+  color: var(--color-deep-charcoal);
+  font-family: var(--font-sans);
+}
+
+@media (pointer: fine) {
+  body, a, button, [role="button"], input, textarea, select {
+    cursor: none;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
