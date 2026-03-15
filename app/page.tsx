@@ -1198,27 +1198,21 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
 // ── Page: Background ───────────────────────────────────────────
 const PageBackground = () => {
   const objects = [
-    { category: "Design", title: "Tactile Interface Study", sub: "Bachelor's Thesis Object", desc: "Ergonomic grip study translated into a handheld device prototype. 14 iterations across 3 materials.", tag: "Physical · 2022" },
-    { category: "Design", title: "Modular Light Form", sub: "Designed Object", desc: "Parametrically derived lamp structure. Each joint toleranced for tool-free assembly.", tag: "Product · 2021" },
-    { category: "Design", title: "Seating System", sub: "Bachelor's Thesis", desc: "A stackable chair designed around occupancy efficiency and tactile surface quality.", tag: "Furniture · 2022" },
-    { category: "Design", title: "Parametric Handle", sub: "CAD/CAM Study", desc: "Algorithmic generation of ergonomic handle geometries. Grasshopper + Rhino pipeline.", tag: "CAD · 2021" },
-    { category: "Design", title: "Wayfinding System", sub: "Designed Object", desc: "Signage family for a public institution. Type + form + material specification.", tag: "System · 2023" },
-    { category: "AI", title: "Generative Form Exploration", sub: "AI Assisted CAD", desc: "Using diffusion models to rapidly iterate on complex surface topologies before manual CAD modeling.", tag: "Research · 2023" },
-    { category: "AI", title: "Material Stress Predictor", sub: "ML Model", desc: "Trained a lightweight neural network to predict failure points in 3D printed geometries.", tag: "Engineering · 2024" },
-    { category: "AI", title: "Automated Ergonomic Testing", sub: "Simulation", desc: "Computer vision pipeline to analyze human posture and interaction with physical prototypes.", tag: "Computer Vision · 2023" },
-    { category: "AI", title: "Prompt Engineering for ID", sub: "Methodology", desc: "Developed a structured prompting framework specifically for industrial design ideation.", tag: "Framework · 2024" },
-    { category: "AI", title: "Semantic Space Mapping", sub: "Data Visualization", desc: "Clustering and visualizing thousands of design concepts using text embeddings.", tag: "Data · 2023" },
-    { category: "Qualifications", title: "Master of Science", sub: "Vanderbilt University", desc: "Master's degree focusing on the intersection of generative artificial intelligence and design.", tag: "Education · 2024" },
-    { category: "Qualifications", title: "Bachelor of Industrial Design", sub: "University", desc: "Comprehensive study of physical product design, manufacturing, and ergonomics.", tag: "Education · 2022" },
-    { category: "Qualifications", title: "Advanced CAD Certification", sub: "Professional", desc: "Certified in advanced surface modeling and parametric design methodologies.", tag: "Certification · 2021" },
-    { category: "Qualifications", title: "Machine Learning Specialization", sub: "Professional", desc: "Deep learning, neural networks, and practical ML deployment methodologies.", tag: "Certification · 2023" },
-    { category: "Qualifications", title: "Enclosure System", sub: "Technical Drawing Suite", desc: "Technical drawing suite for a modular enclosure. Full dimensioned orthographic projection.", tag: "Technical Drawing" },
+    { category: "Design", title: "UI / UX Design Specialization", sub: "California Institute of the Arts", desc: "Full-cycle development from wireframing to high-fidelity prototyping for web and mobile user experiences.", tag: "CERTIFICATION · 2026" },
+    { category: "Design", title: "Master in Industrial and Product Design", sub: "National Autonomous University of Mexico (UNAM)", desc: "Honorable Mention. Research on Generative AI integration in creative workflows and strategic decision-making.", tag: "EDUCATION · 2025" },
+    { category: "AI", title: "AI Applied Workshop Lead", sub: "INBAL (National Institute of Fine Arts)", desc: "Led the design and implementation of the 'AI Tools for Design Teaching' program. Trained faculty in strategic GenAI and prompt engineering.", tag: "WORK · 2025" },
+    { category: "AI", title: "AI Agent Developer", sub: "Vanderbilt University", desc: "Designing and deploying intelligent AI agents. Expertise in agentic architecture and custom GPT development.", tag: "CERTIFICATION · 2025" },
+    { category: "AI", title: "Generative AI Data Analyst", sub: "Vanderbilt University", desc: "Automating data tasks and uncovering insights via AI-driven exploration and strategic storytelling.", tag: "CERTIFICATION · 2025" },
+    { category: "AI", title: "Generative AI SQL Database Specialist", sub: "Vanderbilt University", desc: "Integrating GenAI with SQL for robust schemas and natural language queries. Automated data visualization.", tag: "CERTIFICATION · 2025" },
+    { category: "AI", title: "Prompt Engineering", sub: "Vanderbilt University", desc: "Advanced LLM instruction. Developing prompt templates to amplify intelligence and organizational productivity.", tag: "CERTIFICATION · 2024" },
+    { category: "Design", title: "Industrial Designer", sub: "UAM (Autonomous Metropolitan University)", desc: "Led conceptual design of complex furniture integrating CAD/CAM workflows. Supervised physical prototyping and technical tolerance testing.", tag: "WORK · 2023" },
+    { category: "Design", title: "Bachelor in Industrial and Product Design", sub: "Autonomous Metropolitan University (UAM)", desc: "Recipient of the Diploma for University Merit.", tag: "EDUCATION · 2022" },
   ];
 
   const [filter, setFilter] = useState("All");
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
-  const filters = ["All", "Design", "AI", "Qualifications"];
+  const filters = ["All", "Design", "AI"];
   const visibleObjects = filter === "All" ? objects : objects.filter(o => o.category === filter);
 
   return (
