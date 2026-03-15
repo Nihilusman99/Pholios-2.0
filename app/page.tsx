@@ -720,6 +720,14 @@ const PageMe = () => (
             color: "#FFFFFF",
             tag: "INDUSTRIAL DESIGN · TANGIBLE",
           },
+          {
+            id: "generative-art",
+            title: "Reckoning",
+            sub: "Visual Exploration",
+            desc: "A provocative visual exploration using AI-generated propaganda to critique the ethical implications and societal risks of unchecked artificial intelligence.",
+            color: "#FFFFFF",
+            tag: "AI · ART",
+          },
         ].map(card => (
           <div
             key={card.id}
@@ -915,6 +923,23 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       tag: "INDUSTRIAL DESIGN · AUDIO",
       color: "#0B2B7A",
       theme: "dark",
+    },
+    {
+      id: "generative-art",
+      category: "Design",
+      title: "Reckoning",
+      subtitle: "Visual Exploration — 2024",
+      abstract: "This project explores the intersection of aesthetic propaganda and artificial intelligence. By rendering design posters in a classic propaganda style using generative AI, the work serves as a visual critique of the potential dangers posed by unchecked AI systems—ranging from misinformation to the erosion of human creative agency.",
+      approach: "Utilizing custom-trained diffusion models and specific stylistic prompting, I generated a series of posters that mimic the visual language of mid-20th century propaganda. The goal was to use the very technology being critiqued to illustrate its own potential for manipulation.",
+      contributions: [
+        "Development of a 'Propaganda Aesthetic' prompt library",
+        "Visual analysis of AI's capability to replicate emotional triggers in graphic design",
+        "Exhibition of posters at the Vanderbilt Design Showcase",
+      ],
+      tag: "AI · ART",
+      color: "#0B2B7A",
+      theme: "dark",
+      wide: true,
     },
   ];
 
@@ -1307,21 +1332,28 @@ const fragments = [
 ];
 
 const galleryItems = [
-  { id: "G01", type: "photo", label: "01", img: "https://github.com/user-attachments/assets/f65653b8-6d83-4267-9ed7-f21dc101d88a", h: 320 },
+  { id: "G01", type: "photo", label: "01", img: "/G01.jpg", h: 320 },
   { type: "fragment", text: fragments[0] },
-  { id: "G02", type: "photo", label: "02", img: "https://github.com/user-attachments/assets/6ce8c55c-c3fa-4f5d-8d6b-b46effe1ff63", h: 240 },
-  { id: "G03", type: "photo", label: "03", img: "https://github.com/user-attachments/assets/6c2ddc80-b1bf-4255-a12d-c8fc923c8f40", h: 360 },
-  { id: "G04", type: "graphic", label: "04", img: "https://github.com/user-attachments/assets/fa57973a-dbd0-42e0-bc6b-f09419494165", h: 280 },
+  { id: "G02", type: "photo", label: "02", img: "/G02.jpg", h: 240 },
+  { id: "G03", type: "photo", label: "03", img: "/G03.jpg", h: 360 },
+  { id: "G04", type: "graphic", label: "04", img: "/G04.JPG", h: 280 },
   { type: "fragment", text: fragments[1] },
-  { id: "G05", type: "photo", label: "05", img: "https://github.com/user-attachments/assets/4a8ed4ef-dbdd-4b7c-8d16-8e039a86bdb6", h: 300 },
+  { id: "G05", type: "photo", label: "05", img: "/G05.JPG", h: 300 },
   { id: "G06", type: "graphic", label: "06", img: "https://github.com/user-attachments/assets/39a44046-58da-49ca-8bd3-8f463c34b89b", h: 260 },
   { id: "G07", type: "photo", label: "07", img: "https://github.com/user-attachments/assets/d22baee2-2636-464b-9aba-dc19db9b42f2", h: 340 },
   { type: "fragment", text: fragments[2] },
-  { id: "G08", type: "photo", label: "08", img: "https://github.com/user-attachments/assets/be571216-2471-44b2-b3f9-b8cbfe12d8d3", h: 280 },
-  { id: "G09", type: "graphic", label: "Showcase", img: "/G09.jpg", h: 320 },
+  { id: "G08", type: "photo", label: "08", img: "/G08.jpg", h: 280 },
+  { id: "G09", type: "graphic", label: "Showcase", img: "https://github.com/user-attachments/assets/f65653b8-6d83-4267-9ed7-f21dc101d88a", h: 320 },
   { type: "fragment", text: fragments[3] },
-  { id: "G10", type: "photo", label: "Sound chamber", img: "/G10.jpg", h: 240 },
+  { id: "G10", type: "photo", label: "Sound chamber", img: "https://github.com/user-attachments/assets/6ce8c55c-c3fa-4f5d-8d6b-b46effe1ff63", h: 240 },
 ];
+
+// ── Gallery Helpers ───────────────────────────────────────────
+const getImageUrl = (path: string) => {
+  // This is a dummy function to maintain logic while files are handled via Git.
+  // It returns the path as-is so the code remains correct for the repository.
+  return path;
+};
 
 const PageGallery = () => {
   const [hoveredFrag, setHoveredFrag] = useState<number | null>(null);
@@ -1384,7 +1416,7 @@ const PageGallery = () => {
                 className="fragment-item"
                 data-hover="true"
                 style={{
-                  background: item.img ? `url(${item.img}) center/cover no-repeat` : "#E2DCD2",
+                  background: item.img ? `url(${getImageUrl(item.img)}) center/cover no-repeat` : "#E2DCD2",
                   border: "1px solid #0B2B7A",
                   height: item.h,
                   display: "flex",
