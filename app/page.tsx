@@ -700,7 +700,7 @@ const PageMe = () => (
             id: "mia",
             title: "MIA Model",
             sub: "AI Model",
-            desc: "Model for Inspirational Advancement — a fine-tuned generative system for creative professionals.",
+            desc: "Model for Inspirational Advancements — an AI-assisted system designed to act as a creative catalyst during early-stage ideation.",
             color: "#FFFFFF",
             tag: "AI · Systems",
           },
@@ -708,7 +708,7 @@ const PageMe = () => (
             id: "munchen",
             title: "München Mate",
             sub: "APP",
-            desc: "A context-aware companion designed to navigate the physical and cultural layers of a city through intelligent, localized interaction.",
+            desc: "A bespoke, offline-first digital companion designed to bridge the gap between a standard map and a local friend.",
             color: "#FFFFFF",
             tag: "PRODUCT · TRAVEL",
           },
@@ -722,9 +722,9 @@ const PageMe = () => (
           },
           {
             id: "generative-art",
-            title: "Reckoning",
+            title: "Rendición",
             sub: "Visual Exploration",
-            desc: "A provocative visual exploration using AI-generated propaganda to critique the ethical implications and societal risks of unchecked artificial intelligence.",
+            desc: "A visceral critique of the erosion of human agency through AI-generated propaganda and linguistic decay.",
             color: "#FFFFFF",
             tag: "AI · ART",
           },
@@ -823,18 +823,13 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       id: "mia",
       category: "AI Models",
       title: "MIA",
-      subtitle: "Model for Inspirational Advancement",
-      abstract: "A fine-tuned generative model designed to support creative professionals during early-stage ideation. MIA ingests project briefs and user aesthetic profiles to generate divergent concept seeds—not finished designs, but provocations.",
-      approach: "Built on a fine-tuned base LLM with a custom prompt pipeline. Input: structured brief + style vector. Output: 5-7 concept seeds with rationale.",
+      subtitle: "Model for Inspirational Advancements",
+      abstract: "MIA (Model for Inspirational Advancements) is an AI-assisted system designed to stimulate inspiration during the early stages of design. Rather than generating finished ideas, MIA acts as a creative catalyst—prompting designers to explore unexpected connections, reinterpret problems, and unlock new directions for ideation.",
+      approach: "The project was developed through a research-through-design process combining studies on inspiration, creativity, and generative AI with iterative prompt engineering, leveraging the native ChatGPT GPT builder for rapid prototyping and deployment. The model organizes inspiration through four domains—Connection, Flourishment, Possibilities, and Intelligence—which generate creative triggers that guide designers toward deeper exploration and novel perspectives.",
       contributions: [
-        "Custom fine-tuning dataset of 1,200+ design briefs",
-        "Style vector encoding from 16 aesthetic axes",
-        "Deployed to 3 design studios in pilot",
-      ],
-      architecture: [
-        { layer: "Input", desc: "Brief Parser + Style Vector" },
-        { layer: "Core", desc: "Fine-tuned LLM (7B)" },
-        { layer: "Output", desc: "Concept Seeds + Rationale" },
+        "Reframes AI as a creative collaborator for inspiration, not just an idea generator.",
+        "Develops inspiration triggers that provoke unexpected associations and creative thinking.",
+        "Explores new opportunities for human–AI collaboration in design ideation.",
       ],
       tag: "AI Model",
       color: "#0B2B7A",
@@ -844,19 +839,13 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       id: "pep",
       category: "AI Models",
       title: "PEP",
-      subtitle: "Prompt Enhancement and Personalization",
-      abstract: "PEP is a meta-prompt system that transforms vague user intentions into precisely structured, context-aware prompts for downstream generative models. It acts as an intelligent translator between human intention and machine language.",
-      approach: "Analyzes input intent signals, injects domain context, and applies a personalization layer trained on user history.",
+      subtitle: "Prompt Enhancement and Personalization Bot",
+      abstract: "PEP (Prompt Enhancement and Personalization Bot) is an AI tool designed to help users transform basic prompts into structured, high-quality instructions for generative AI systems. By refining intent, clarifying context, and adapting prompts to individual users, PEP improves the reliability, precision, and usefulness of AI-generated responses.",
+      approach: "PEP was developed through iterative prompt engineering and experimentation with user–AI interaction patterns, leveraging the native ChatGPT GPT builder for rapid prototyping and refinement. The system analyzes an initial prompt, identifies missing context or ambiguity, and restructures it using techniques such as role assignment, task clarification, and contextual enrichment. The result is a more precise and personalized prompt optimized for better AI performance.",
       contributions: [
-        "Personalization engine with adaptive user model",
-        "Domain-specific prompt templates for design, writing, and strategy",
-        "Reduces prompt iteration cycles by ~60%",
-      ],
-      architecture: [
-        { layer: "Input", desc: "Raw user intent" },
-        { layer: "Analysis", desc: "Intent parsing + domain classifier" },
-        { layer: "Personalization", desc: "User history embedding" },
-        { layer: "Output", desc: "Structured prompt" },
+        "Improves AI output quality through structured prompt enhancement.",
+        "Introduces a system for personalizing prompts based on user intent and context.",
+        "Demonstrates how AI tools can augment user capability rather than replace user input.",
       ],
       tag: "AI Model",
       color: "#0B2B7A",
@@ -867,8 +856,13 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       category: "App",
       title: "München Mate",
       subtitle: "APP",
-      abstract: "A context-aware companion designed to navigate the physical and cultural layers of a city through intelligent, localized interaction.",
-      wireframeSteps: ["Onboarding → Language + interests", "District map", "Category filters", "Deep card view"],
+      abstract: "München Mate is a bespoke, offline-first digital companion designed to take the stress out of navigating a new city. Built as a high-performance web app, it bridges the gap between a standard map and a local friend by providing the specific tools I needed most: cultural context, weather-based planning, and reliable transport data.",
+      approach: "I designed this project to solve my own specific needs during a trip to Munich. I focused on a lean, \"less is more\" philosophy, prioritizing features that broader apps often miss—like a translator that explains cultural nuances and a packing list that updates with the forecast. By using a data-driven architecture that works entirely offline, I created a reliable \"buddy\" that was perfectly optimized for my own journey through the city’s physical and social landscape.",
+      contributions: [
+        "Purpose-Built Utility: Stripped away the noise of general apps to focus on high-value, personal travel needs.",
+        "Offline Independence: Engineered the app to be 100% functional without a data connection, perfect for subways and remote spots.",
+        "Contextual Intelligence: Developed smart features that link weather, transit, and budget into one simple, intuitive dashboard.",
+      ],
       tag: "PRODUCT · TRAVEL",
       color: "#0B2B7A",
       theme: "dark",
@@ -887,8 +881,15 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       id: "academic-paper-navigator",
       category: "AI Models",
       title: "Academic Paper Navigator",
-      subtitle: "Coming Soon",
-      abstract: "Project description coming soon.",
+      subtitle: "AI Research Assistant",
+      abstract: "Academic Paper Navigator is an AI assistant designed to help students and researchers analyze academic papers more efficiently. The system transforms dense research articles into structured insights, making it easier to understand key arguments, extract evidence, and navigate complex scholarly texts.",
+      approach: "The tool was developed by designing targeted custom instructions within the native ChatGPT GPT builder to operate as a structured academic analysis assistant. The system prompt defines the model’s role, response structure, and interaction flow, ensuring that each paper is processed through a consistent analytical framework. By embedding the analysis workflow directly into the instructions, the model produces reliable academic breakdowns with minimal user input.",
+      contributions: [
+        "Establishes a standardized framework for breaking down complex research texts.",
+        "Integrates evidence-based analysis through referenced quotations.",
+        "Expands accessibility through bilingual academic interaction (English/Spanish).",
+        "Demonstrates how AI can support deeper engagement with scholarly literature.",
+      ],
       tag: "RESEARCH · TOOL",
       color: "#0B2B7A",
       theme: "dark",
@@ -927,14 +928,14 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
     {
       id: "generative-art",
       category: "Design",
-      title: "Reckoning",
+      title: "Rendición",
       subtitle: "Visual Exploration — 2024",
-      abstract: "This project explores the intersection of aesthetic propaganda and artificial intelligence. By rendering design posters in a classic propaganda style using generative AI, the work serves as a visual critique of the potential dangers posed by unchecked AI systems—ranging from misinformation to the erosion of human creative agency.",
-      approach: "Utilizing custom-trained diffusion models and specific stylistic prompting, I generated a series of posters that mimic the visual language of mid-20th century propaganda. The goal was to use the very technology being critiqued to illustrate its own potential for manipulation.",
+      abstract: "This project investigates the unsettling intersection of aesthetic propaganda and artificial intelligence through a series of Spanish-language works. Using urgent commands like ¡DESPIERTA! (Wake up!) and NO ES UN SUEÑO (It is not a dream), the work serves as a visceral critique of the erosion of human agency. The narrative culminates in the haunting realization that \"our creation ended up demanding our surrender\" (Nuestra creación terminó exigiéndonos rendición), transforming AI from a tool into an entity that dictates its own terms.",
+      approach: "Utilizing custom-trained diffusion models, I generated a series of posters that mimic the aggressive visual language of mid-20th-century propaganda to illustrate a \"Technological Exodus\" (Éxodo Tecnológico). The process intentionally pushed the AI toward \"hallucination\" and linguistic decay, resulting in distorted artifacts like FERA, VCHAT and GPBRLT TRCHOLIRY. By using the very technology being critiqued to voice its own potential for manipulation, the approach highlights the shift from human intent to autonomous machine \"fear.\"",
       contributions: [
-        "Development of a 'Propaganda Aesthetic' prompt library",
-        "Visual analysis of AI's capability to replicate emotional triggers in graphic design",
-        "Exhibition of posters at the Vanderbilt Design Showcase",
+        "Propaganda Syntax Library: Development of a prompt framework designed to replicate the psychological cadence of political alarmism.",
+        "Visual Analysis of AI capability: Investigation into the technology's ability to replicate emotional triggers within graphic design layouts.",
+        "Linguistic Decay Documentation: Analysis of how generative AI transitions from coherent human language to \"machine-only\" noise under high-stress stylistic prompting.",
       ],
       tag: "AI · ART",
       color: "#0B2B7A",
@@ -1013,62 +1014,6 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
                   </li>
                 ))}
               </ul>
-            </>
-          )}
-
-          {p.architecture && (
-            <>
-              <h4 style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: T.accent, marginBottom: 20 }}>System Architecture</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 40 }}>
-                {p.architecture.map((a, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 0 }}>
-                    <div style={{
-                      background: i % 2 === 0 ? T.text : T.accent,
-                      color: T.bg,
-                      padding: "14px 20px",
-                      fontSize: 10,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      minWidth: 120,
-                    }}>
-                      {a.layer}
-                    </div>
-                    <div style={{
-                      flex: 1,
-                      background: "#F0EFEC",
-                      padding: "14px 20px",
-                      fontSize: 13,
-                      color: T.accent,
-                    }}>
-                      {a.desc}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-
-          {p.wireframeSteps && (
-            <>
-              <h4 style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: T.accent, marginBottom: 20 }}>User Flow</h4>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 40 }}>
-                {p.wireframeSteps.map((s, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{
-                      background: "#F0EFEC",
-                      padding: "12px 16px",
-                      fontSize: 12,
-                      color: T.text,
-                      borderRadius: 2,
-                    }}>
-                      {s}
-                    </div>
-                    {i < p.wireframeSteps.length - 1 && (
-                      <span style={{ color: T.border, fontSize: 12 }}>→</span>
-                    )}
-                  </div>
-                ))}
-              </div>
             </>
           )}
 
