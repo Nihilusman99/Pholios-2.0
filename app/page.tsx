@@ -1200,10 +1200,12 @@ const PageBackground = () => {
   const objects = [
     { category: "Design", title: "UI / UX Design Specialization", sub: "California Institute of the Arts", desc: "Full-cycle development from wireframing to high-fidelity prototyping for web and mobile user experiences.", tag: "CERTIFICATION · 2026" },
     { category: "Design", title: "Master in Industrial and Product Design", sub: "National Autonomous University of Mexico (UNAM)", desc: "Honorable Mention. Research on Generative AI integration in creative workflows and strategic decision-making.", tag: "EDUCATION · 2025" },
-    { category: "AI", title: "AI Applied Workshop Lead", sub: "INBAL (National Institute of Fine Arts)", desc: "Led the design and implementation of the 'AI Tools for Design Teaching' program. Trained faculty in strategic GenAI and prompt engineering.", tag: "WORK · 2025" },
+    { category: "Advocacy", title: "AI Applied Workshop Lead", sub: "INBAL (National Institute of Fine Arts)", desc: "Led the design and implementation of the 'AI Tools for Design Teaching' program. Trained faculty in strategic GenAI and prompt engineering.", tag: "WORK · 2025" },
     { category: "AI", title: "AI Agent Developer", sub: "Vanderbilt University", desc: "Designing and deploying intelligent AI agents. Expertise in agentic architecture and custom GPT development.", tag: "CERTIFICATION · 2025" },
     { category: "AI", title: "Generative AI Data Analyst", sub: "Vanderbilt University", desc: "Automating data tasks and uncovering insights via AI-driven exploration and strategic storytelling.", tag: "CERTIFICATION · 2025" },
     { category: "AI", title: "Generative AI SQL Database Specialist", sub: "Vanderbilt University", desc: "Integrating GenAI with SQL for robust schemas and natural language queries. Automated data visualization.", tag: "CERTIFICATION · 2025" },
+    { category: "Advocacy", title: "Creating with AI: Prompting for Research", sub: "UNAM (Institute of Anthropological Research)", desc: "Workshop on AI tools for academic research and digital narratives.", tag: "WORKSHOP · 2024" },
+    { category: "Advocacy", title: "Prompt Engineering Workshop", sub: "INBAL (School of Design)", desc: "Instructed the Multimedia Design community on fundamental prompt engineering for LLMs and image generation models.", tag: "WORKSHOP · 2024" },
     { category: "AI", title: "Prompt Engineering", sub: "Vanderbilt University", desc: "Advanced LLM instruction. Developing prompt templates to amplify intelligence and organizational productivity.", tag: "CERTIFICATION · 2024" },
     { category: "Design", title: "Industrial Designer", sub: "UAM (Autonomous Metropolitan University)", desc: "Led conceptual design of complex furniture integrating CAD/CAM workflows. Supervised physical prototyping and technical tolerance testing.", tag: "WORK · 2023" },
     { category: "Design", title: "Bachelor in Industrial and Product Design", sub: "Autonomous Metropolitan University (UAM)", desc: "Recipient of the Diploma for University Merit.", tag: "EDUCATION · 2022" },
@@ -1212,7 +1214,7 @@ const PageBackground = () => {
   const [filter, setFilter] = useState("All");
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
-  const filters = ["All", "Design", "AI"];
+  const filters = ["All", "Design", "AI", "Advocacy"];
   const visibleObjects = filter === "All" ? objects : objects.filter(o => o.category === filter);
 
   return (
