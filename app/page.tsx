@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FileText, ExternalLink, Cpu, BookOpen, X, Download, Mail, Linkedin } from "lucide-react";
 
@@ -802,6 +803,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       tag: "APP",
       color: "#0B2B7A",
       theme: "dark",
+      img: "WardrobeOS.jpg"
     },
     {
       id: "munchen",
@@ -819,6 +821,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       tag: "APP",
       color: "#0B2B7A",
       theme: "dark",
+      img: "MunchenMate.jpg",
       links: {
         live: "https://munchen-mate.vercel.app"
       },
@@ -850,6 +853,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      img: "IdeAI.jpg",
       links: {
         paper: "/thesis-ideai.pdf"
       },
@@ -879,6 +883,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       tag: "AI MODELS",
       color: "#0B2B7A",
       theme: "dark",
+      img: "MIA.jpg",
       links: {
         presentation: "/mia-presentation.pdf",
         model: "https://chatgpt.com/g/g-mia-model"
@@ -916,6 +921,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       tag: "AI MODELS",
       color: "#0B2B7A",
       theme: "dark",
+      img: "PEP.jpg",
       links: {
         presentation: "/pep-presentation.pdf",
         model: "https://chatgpt.com/g/g-pep-bot"
@@ -954,6 +960,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      img: "Rendicion.jpg",
       links: {
         poster: "/rendicion-poster.pdf"
       },
@@ -984,6 +991,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       tag: "AI MODELS",
       color: "#0B2B7A",
       theme: "dark",
+      img: "AcademicPaperNavigator.jpg",
       links: {
         model: "https://chatgpt.com/g/g-academic-paper-navigator"
       },
@@ -1013,6 +1021,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       tag: "DESIGN",
       color: "#0B2B7A",
       theme: "dark",
+      img: "AcousticResonanceChamber.jpg",
       links: {
         details: "https://behance.net/diego-nava",
         paper: "/chamber-documentation.pdf"
@@ -1051,6 +1060,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      img: "GalleryShowcase.jpg",
       links: {
         details: "https://behance.net/diego-nava",
         paper: "/showcase-documentation.pdf"
@@ -1088,6 +1098,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       tag: "DESIGN",
       color: "#0B2B7A",
       theme: "dark",
+      img: "WorkshopCabinet.jpg",
       links: {
         details: "https://behance.net/diego-nava",
         paper: "/cabinet-documentation.pdf"
@@ -1126,6 +1137,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      img: "Cauma.jpg",
       links: {
         poster: "/cauma-infography.pdf"
       },
@@ -1179,7 +1191,34 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
           }}>
             {p.title}
           </h1>
-          <p style={{ fontSize: 13, color: T.accent, marginBottom: 48, letterSpacing: "0.03em" }}>{p.subtitle}</p>
+          <p style={{ fontSize: 13, color: T.accent, marginBottom: 24, letterSpacing: "0.03em" }}>{p.subtitle}</p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            style={{
+              width: "100%",
+              height: 160,
+              position: "relative",
+              marginBottom: 48,
+              borderRadius: 4,
+              overflow: "hidden",
+              background: `${T.border}22`,
+            }}
+          >
+            <Image
+              src={`/${p.img}`}
+              alt={`${p.title} Header`}
+              fill
+              style={{ objectFit: "cover" }}
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                // Fallback to picsum if local image is missing
+                e.currentTarget.src = `https://picsum.photos/seed/${p.id}/1280/640`;
+              }}
+            />
+          </motion.div>
 
           <div style={{ borderTop: `1px solid ${T.border}`, marginBottom: 48 }} />
 
