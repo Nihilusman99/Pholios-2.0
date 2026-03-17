@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FileText, ExternalLink, Cpu, BookOpen, X, Download, Mail, Linkedin } from "lucide-react";
 
 // ── Design Tokens ──────────────────────────────────────────────
 const T = {
@@ -692,7 +694,7 @@ const PageMe = () => (
             id: "ideai",
             title: "IdeAI",
             sub: "Master's Thesis",
-            desc: "Measuring GenAI's impact on creative ideation through structured design methodology.",
+            desc: "An evaluative framework analyzing how generative AI reshapes the way designers think and create.",
             color: "#FFFFFF",
             tag: "Research",
           },
@@ -785,7 +787,7 @@ const PageMe = () => (
 );
 
 // ── Page: Projects ─────────────────────────────────────────────
-const PageProjects = ({ openProject }: { openProject: string | null }) => {
+const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, onOpenPdf: (url: string) => void }) => {
   const [filter, setFilter] = useState("All");
   const filters = ["All", "Research", "AI Models", "App", "Design"];
 
@@ -817,25 +819,49 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       tag: "APP",
       color: "#0B2B7A",
       theme: "dark",
+      links: {
+        live: "https://munchen-mate.vercel.app"
+      },
+      resources: [
+        {
+          title: "München Mate Live Site",
+          sub: "Deployment",
+          desc: "Experience the offline-first travel companion directly in your browser.",
+          link: "https://munchen-mate.vercel.app",
+          type: "live"
+        }
+      ]
     },
     {
       id: "ideai",
       category: "Research",
       title: "IdeAI",
-      subtitle: "Master's Thesis — Vanderbilt University, 2024",
-      desc: "Measuring GenAI's impact on creative ideation through structured design methodology.",
-      abstract: "This thesis investigates the intersection of generative artificial intelligence and the human creative ideation process. Using a mixed-methods research framework, IdeAI proposes a structured protocol to measure how AI tools—specifically large language models and image generation systems—expand, constrain, or redirect creative divergence in industrial design workflows.",
-      approach: "Participants were assigned design briefs of equivalent complexity. One cohort worked without AI assistance; a second used unstructured AI prompting; a third used the IdeAI protocol—a scaffolded, phase-locked ideation method. Outputs were evaluated on novelty, feasibility, and breadth of concept exploration.",
+      subtitle: "Master's Thesis",
+      desc: "An evaluative framework analyzing how generative AI reshapes the way designers think and create.",
+      abstract: "IdeAI is an evaluative framework designed to analyze how generative AI reshapes the way designers think and create. While AI is rapidly entering design workflows, this research moves beyond looking at final results to examine the actual interaction between humans and machines. By studying twelve senior designers, the project explores how AI mediation can either broaden exploration or, if used uncritically, narrow conceptual diversity. The ultimate goal is to provide a foundation for co-creative systems that support, rather than replace, human creative judgment.",
+      approach: "The research utilized a controlled case study comparing designers working with and without AI assistance through a unified methodology. By tracking both the process (how ideas evolve) and the product (the novelty and depth of the result), the study analyzed six key indicators of creative success. This approach allowed for a balanced look at \"interaction dynamics,\" revealing that the quality of the outcome depends less on the presence of AI and more on how the designer exercises judgment throughout the process.",
       contributions: [
-        "A validated protocol for integrating GenAI into early-stage design ideation",
-        "A scoring rubric for measuring creative divergence quantitatively",
-        "Evidence that structured AI use increases conceptual breadth by 34% versus unassisted ideation",
-        "A framework adopted in the National Institute of Fine Arts and Literature (INBAL) educators' 30-hour AI curriculum",
+        "Evaluative Framework: Development of a methodology that integrates process-based and product-based indicators to assess human-AI interaction.",
+        "Interactional Insight: Identification of the \"ambivalent effects\" of AI, showing it can reduce friction in creative stages while simultaneously risking a loss of conceptual variety.",
+        "Methodological Foundation: Provision of a new standard for design pedagogy and the development of future co-creative systems.",
+        "Distributed Creativity Model: Framing ideation as a shared journey between human judgment and machine assistance to ensure the designer remains the central decision-maker.",
       ],
       tag: "RESEARCH",
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      links: {
+        paper: "/thesis-ideai.pdf"
+      },
+      resources: [
+        {
+          title: "IdeAI: Full Paper",
+          sub: "Master's Thesis",
+          desc: "The complete evaluative framework exploring the interaction dynamics between senior designers and generative AI systems.",
+          link: "/thesis-ideai.pdf",
+          type: "paper"
+        }
+      ]
     },
     {
       id: "mia",
@@ -853,14 +879,34 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       tag: "AI MODELS",
       color: "#0B2B7A",
       theme: "dark",
+      links: {
+        presentation: "/mia-presentation.pdf",
+        model: "https://chatgpt.com/g/g-mia-model"
+      },
+      resources: [
+        {
+          title: "MIA Model",
+          sub: "AI Catalyst",
+          desc: "Direct link to the Model for Inspirational Advancements. Requires a ChatGPT Plus subscription.",
+          link: "https://chatgpt.com/g/g-mia-model",
+          type: "model"
+        },
+        {
+          title: "MIA: Pitch Presentation",
+          sub: "Strategy",
+          desc: "Comprehensive pitch deck and presentation outlining the vision and impact of the MIA system.",
+          link: "/mia-presentation.pdf",
+          type: "presentation"
+        }
+      ]
     },
     {
       id: "pep",
       category: "AI Models",
-      title: "PEP Bot",
-      subtitle: "Prompt Enhancement and Personalization Bot",
+      title: "PEP",
+      subtitle: "Prompt Enhancement and Personalization",
       desc: "A tool for transforming basic prompts into high-quality, personalized AI instructions.",
-      abstract: "PEP (Prompt Enhancement and Personalization Bot) is an AI tool designed to help users transform basic prompts into structured, high-quality instructions for generative AI systems. By refining intent, clarifying context, and adapting prompts to individual users, PEP improves the reliability, precision, and usefulness of AI-generated responses.",
+      abstract: "PEP (Prompt Enhancement and Personalization) is an AI tool designed to help users transform basic prompts into structured, high-quality instructions for generative AI systems. By refining intent, clarifying context, and adapting prompts to individual users, PEP improves the reliability, precision, and usefulness of AI-generated responses.",
       approach: "PEP was developed through iterative prompt engineering and experimentation with user–AI interaction patterns, leveraging the native ChatGPT GPT builder for rapid prototyping and refinement. The system analyzes an initial prompt, identifies missing context or ambiguity, and restructures it using techniques such as role assignment, task clarification, and contextual enrichment. The result is a more precise and personalized prompt optimized for better AI performance.",
       contributions: [
         "Improves AI output quality through structured prompt enhancement.",
@@ -870,6 +916,26 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       tag: "AI MODELS",
       color: "#0B2B7A",
       theme: "dark",
+      links: {
+        presentation: "/pep-presentation.pdf",
+        model: "https://chatgpt.com/g/g-pep-bot"
+      },
+      resources: [
+        {
+          title: "PEP Model",
+          sub: "Prompt Engineering",
+          desc: "Access the Prompt Enhancement and Personalization tool for advanced LLM instruction design.",
+          link: "https://chatgpt.com/g/g-pep-bot",
+          type: "model"
+        },
+        {
+          title: "PEP: Pitch Presentation",
+          sub: "Strategy",
+          desc: "The strategic presentation for the Prompt Enhancement and Personalization system.",
+          link: "/pep-presentation.pdf",
+          type: "presentation"
+        }
+      ]
     },
     {
       id: "generative-art",
@@ -888,6 +954,18 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      links: {
+        poster: "/rendicion-poster.pdf"
+      },
+      resources: [
+        {
+          title: "Rendición: Full Poster",
+          sub: "Visual Critique",
+          desc: "High-resolution visual exploration of human agency erosion and linguistic decay.",
+          link: "/rendicion-poster.pdf",
+          type: "poster"
+        }
+      ]
     },
     {
       id: "academic-paper-navigator",
@@ -906,6 +984,18 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       tag: "AI MODELS",
       color: "#0B2B7A",
       theme: "dark",
+      links: {
+        model: "https://chatgpt.com/g/g-academic-paper-navigator"
+      },
+      resources: [
+        {
+          title: "Academic Paper Navigator",
+          sub: "Research Assistant",
+          desc: "AI assistant that transforms dense research articles into structured, actionable insights.",
+          link: "https://chatgpt.com/g/g-academic-paper-navigator",
+          type: "model"
+        }
+      ]
     },
     {
       id: "sound-chamber",
@@ -923,6 +1013,26 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       tag: "DESIGN",
       color: "#0B2B7A",
       theme: "dark",
+      links: {
+        details: "https://behance.net/diego-nava",
+        paper: "/chamber-documentation.pdf"
+      },
+      resources: [
+        {
+          title: "Acoustic Resonance Chamber",
+          sub: "Industrial Design",
+          desc: "Technical documentation and design process for the mobile sound isolation system.",
+          link: "/chamber-documentation.pdf",
+          type: "paper"
+        },
+        {
+          title: "Full Project Details",
+          sub: "Behance Showcase",
+          desc: "View high-resolution imagery and detailed process shots on Behance.",
+          link: "https://behance.net/diego-nava",
+          type: "details"
+        }
+      ]
     },
     {
       id: "showcase",
@@ -941,6 +1051,26 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      links: {
+        details: "https://behance.net/diego-nava",
+        paper: "/showcase-documentation.pdf"
+      },
+      resources: [
+        {
+          title: "Gallery Showcase",
+          sub: "Industrial Design",
+          desc: "Structural engineering and exhibition strategy for the curated display system.",
+          link: "/showcase-documentation.pdf",
+          type: "paper"
+        },
+        {
+          title: "Full Project Details",
+          sub: "Behance Showcase",
+          desc: "View high-resolution imagery and detailed process shots on Behance.",
+          link: "https://behance.net/diego-nava",
+          type: "details"
+        }
+      ]
     },
     {
       id: "drawer",
@@ -958,6 +1088,26 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       tag: "DESIGN",
       color: "#0B2B7A",
       theme: "dark",
+      links: {
+        details: "https://behance.net/diego-nava",
+        paper: "/cabinet-documentation.pdf"
+      },
+      resources: [
+        {
+          title: "Workshop Cabinet",
+          sub: "Industrial Design",
+          desc: "Workflow optimization and digital craftsmanship for the studio storage system.",
+          link: "/cabinet-documentation.pdf",
+          type: "paper"
+        },
+        {
+          title: "Full Project Details",
+          sub: "Behance Showcase",
+          desc: "View high-resolution imagery and detailed process shots on Behance.",
+          link: "https://behance.net/diego-nava",
+          type: "details"
+        }
+      ]
     },
     {
       id: "cauma",
@@ -976,6 +1126,18 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
       color: "#0B2B7A",
       theme: "dark",
       wide: true,
+      links: {
+        poster: "/cauma-infography.pdf"
+      },
+      resources: [
+        {
+          title: "Cauma Poster",
+          sub: "Sensory Design",
+          desc: "A detailed visual breakdown of the material engineering and sensory mechanics of the Cauma system.",
+          link: "/cauma-infography.pdf",
+          type: "poster"
+        }
+      ]
     },
   ];
 
@@ -1055,6 +1217,7 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
           {p.tag === "Thesis" && (
             <button
               data-hover="true"
+              onClick={() => window.location.hash = 'resources'}
               style={{
                 background: T.text,
                 color: T.bg,
@@ -1065,10 +1228,79 @@ const PageProjects = ({ openProject }: { openProject: string | null }) => {
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 borderRadius: 2,
+                marginTop: 24,
               }}
             >
-              Download PDF
+              View Full Documentation
             </button>
+          )}
+
+          {/* Project Resources Section */}
+          {p.resources && p.resources.length > 0 && (
+            <div style={{ marginTop: 80, paddingTop: 48, borderTop: `1px dashed ${T.border}` }}>
+              <h4 style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: T.accent, marginBottom: 32 }}>Project Resources</h4>
+              <div style={{ 
+                display: "grid", 
+                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", 
+                gap: 24 
+              }}>
+                {p.resources.map((res: any, idx: number) => (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      if (res.type === "paper" || res.type === "presentation" || res.type === "poster") {
+                        onOpenPdf(res.link);
+                      } else {
+                        window.open(res.link, "_blank");
+                      }
+                    }}
+                    data-hover="true"
+                    style={{
+                      background: T.white,
+                      border: `1px solid ${T.border}44`,
+                      padding: "24px",
+                      borderRadius: 4,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      minHeight: 200,
+                      cursor: "none",
+                      transition: "all 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = T.accent;
+                      e.currentTarget.style.transform = "translateY(-4px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = `${T.border}44`;
+                      e.currentTarget.style.transform = "translateY(0)";
+                    }}
+                  >
+                    <div>
+                      <div style={{ marginBottom: 16 }}>
+                        <div style={{ color: T.accent }}>
+                          {res.type === "paper" && <BookOpen size={18} />}
+                          {res.type === "presentation" && <FileText size={18} />}
+                          {res.type === "poster" && <FileText size={18} />}
+                          {res.type === "model" && <Cpu size={18} />}
+                          {res.type === "live" && <ExternalLink size={18} />}
+                          {res.type === "details" && <ExternalLink size={18} />}
+                        </div>
+                      </div>
+                      <h3 className="fraunces" style={{ fontSize: 18, fontWeight: 400, color: T.text, marginBottom: 12 }}>
+                        {res.title}
+                      </h3>
+                      <p style={{ fontSize: 13, lineHeight: 1.5, color: T.text, fontWeight: 300, opacity: 0.7 }}>
+                        {res.desc}
+                      </p>
+                    </div>
+                    <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: T.accent, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                      {res.type === "model" ? "Access Model" : "View Resource"} <ExternalLink size={10} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </div>
@@ -1415,6 +1647,7 @@ export default function App() {
   const [page, setPage] = useState("hero");
   const [subPage, setSubPage] = useState<string | null>(null);
   const [showNav, setShowNav] = useState(false);
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -1464,25 +1697,151 @@ export default function App() {
         )}
 
         {page === "me" && <PageMe />}
-        {page === "projects" && <PageProjects openProject={subPage} />}
+        {page === "projects" && <PageProjects openProject={subPage} onOpenPdf={setSelectedPdf} />}
         {page === "background" && <PageBackground />}
         {page === "gallery" && <PageGallery />}
+
+        {/* PDF Modal */}
+        <AnimatePresence>
+          {selectedPdf && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 1000,
+                background: "rgba(30,30,30,0.85)",
+                backdropFilter: "blur(8px)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "40px",
+              }}
+              onClick={() => setSelectedPdf(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  width: "100%",
+                  maxWidth: 1000,
+                  height: "90vh",
+                  background: T.white,
+                  borderRadius: 4,
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  position: "relative",
+                }}
+              >
+                <div style={{
+                  padding: "16px 24px",
+                  borderBottom: `1px solid ${T.border}`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  background: T.bg,
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <FileText size={18} color={T.accent} />
+                    <span style={{ fontSize: 12, letterSpacing: "0.05em", textTransform: "uppercase", color: T.text }}>
+                      Document Viewer
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", gap: 16 }}>
+                    <a 
+                      href={selectedPdf} 
+                      download 
+                      style={{ color: T.accent, display: "flex", alignItems: "center", gap: 6, textDecoration: "none", fontSize: 11 }}
+                      data-hover="true"
+                    >
+                      <Download size={16} /> Download
+                    </a>
+                    <button
+                      onClick={() => setSelectedPdf(null)}
+                      style={{ background: "none", border: "none", color: T.text, cursor: "none" }}
+                      data-hover="true"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+                </div>
+                <div style={{ flex: 1, background: "#525659" }}>
+                  <iframe
+                    src={`${selectedPdf}#toolbar=0`}
+                    style={{ width: "100%", height: "100%", border: "none" }}
+                    title="PDF Viewer"
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Footer */}
         {page !== "hero" && (
           <footer className="footer-container" style={{
             borderTop: `1px solid ${T.border}`,
-            padding: "48px 80px",
+            padding: "40px 80px",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "space-between",
+            gap: 24,
+            textAlign: "center"
           }}>
-            <span className="fraunces" style={{ fontSize: 14, fontWeight: 300, color: T.accent, fontStyle: "italic" }}>
-              MDI Diego S. Nava
-            </span>
-            <span style={{ fontSize: 11, color: T.border, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              Industrial Designer &amp; AI Strategist
-            </span>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              <span className="fraunces" style={{ fontSize: 16, fontWeight: 300, color: T.text, fontStyle: "italic" }}>
+                MDI Diego S. Nava
+              </span>
+              <span style={{ fontSize: 9, color: T.accent, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                Industrial Designer &amp; AI Strategist
+              </span>
+            </div>
+
+            <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+              <a 
+                href="mailto:diegos.nava99@gmail.com" 
+                data-hover="true"
+                title="Email"
+                style={{ color: T.accent, transition: "all 0.3s ease", cursor: "none" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = T.text;
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = T.accent;
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <Mail size={18} />
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/diego-s-nava-963562259" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                data-hover="true"
+                title="LinkedIn"
+                style={{ color: T.accent, transition: "all 0.3s ease", cursor: "none" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = T.text;
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = T.accent;
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <Linkedin size={18} />
+              </a>
+            </div>
+
+            <div style={{ fontSize: 9, color: T.border, letterSpacing: "0.05em", marginTop: 8 }}>
+              &copy; {new Date().getFullYear()} — Designed &amp; Developed with Intention
+            </div>
           </footer>
         )}
       </div>
