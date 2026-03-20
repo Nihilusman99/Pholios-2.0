@@ -838,14 +838,14 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       theme: "dark",
       img: "MunchenMate.jpg",
       links: {
-        live: "https://munchen-mate.vercel.app"
+        live: "https://nihilusman99.github.io/Munchen-Mate/"
       },
       resources: [
         {
           title: "München Mate Live Site",
           sub: "Deployment",
           desc: "Experience the offline-first travel companion directly in your browser.",
-          link: "https://munchen-mate.vercel.app",
+          link: "https://nihilusman99.github.io/Munchen-Mate/",
           type: "live"
         }
       ]
@@ -870,15 +870,15 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       wide: true,
       img: "IdeAI.jpg",
       links: {
-        paper: "/thesis-ideai.pdf"
+        paper: "https://hdl.handle.net/20.500.14330/TES01000878080"
       },
       resources: [
         {
           title: "IdeAI: Full Paper",
           sub: "Master's Thesis",
           desc: "The complete evaluative framework exploring the interaction dynamics between senior designers and generative AI systems.",
-          link: "/thesis-ideai.pdf",
-          type: "paper"
+          link: "https://hdl.handle.net/20.500.14330/TES01000878080",
+          type: "link"
         }
       ]
     },
@@ -901,14 +901,14 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       img: "MIA.jpg",
       links: {
         presentation: "/mia-presentation.pdf",
-        model: "https://chatgpt.com/g/g-mia-model"
+        model: "https://chatgpt.com/g/g-o19ogGH4L-m-i-a"
       },
       resources: [
         {
           title: "MIA Model",
           sub: "AI Catalyst",
           desc: "Direct link to the Model for Inspirational Advancements. Requires a ChatGPT Plus subscription.",
-          link: "https://chatgpt.com/g/g-mia-model",
+          link: "https://chatgpt.com/g/g-o19ogGH4L-m-i-a",
           type: "model"
         },
         {
@@ -939,14 +939,14 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       img: "PEP.jpg",
       links: {
         presentation: "/pep-presentation.pdf",
-        model: "https://chatgpt.com/g/g-pep-bot"
+        model: "https://chatgpt.com/g/g-fPOoxjlIf-p-e-p"
       },
       resources: [
         {
           title: "PEP Model",
           sub: "Prompt Engineering",
           desc: "Access the Prompt Enhancement and Personalization tool for advanced LLM instruction design.",
-          link: "https://chatgpt.com/g/g-pep-bot",
+          link: "https://chatgpt.com/g/g-fPOoxjlIf-p-e-p",
           type: "model"
         },
         {
@@ -1008,14 +1008,14 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       theme: "dark",
       img: "AcademicPaperNavigator.jpg",
       links: {
-        model: "https://chatgpt.com/g/g-academic-paper-navigator"
+        model: "https://chatgpt.com/g/g-NKqcwRJHI-academic-paper-navigator"
       },
       resources: [
         {
           title: "Academic Paper Navigator",
           sub: "Research Assistant",
           desc: "AI assistant that transforms dense research articles into structured, actionable insights.",
-          link: "https://chatgpt.com/g/g-academic-paper-navigator",
+          link: "https://chatgpt.com/g/g-NKqcwRJHI-academic-paper-navigator",
           type: "model"
         }
       ]
