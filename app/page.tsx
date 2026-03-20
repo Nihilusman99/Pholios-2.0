@@ -704,7 +704,7 @@ const PageMe = () => (
             desc: "An evaluative framework analyzing how generative AI reshapes the way designers think and create.",
             color: "#FFFFFF",
             tag: "Research",
-            image: "/projects/ideai.jpg",
+            image: "/ideai.jpg",
           },
           {
             id: "munchen",
@@ -713,7 +713,7 @@ const PageMe = () => (
             desc: "An offline-first companion bridging the gap between maps and local knowledge.",
             color: "#FFFFFF",
             tag: "App",
-            image: "/projects/munchen.jpg",
+            image: "/munchen.jpg",
           },
           {
             id: "mia",
@@ -722,7 +722,7 @@ const PageMe = () => (
             desc: "An AI-assisted system designed to act as a creative catalyst during early-stage ideation.",
             color: "#FFFFFF",
             tag: "AI Models",
-            image: "/projects/mia.jpg",
+            image: "/mia.jpg",
           },
           {
             id: "cauma",
@@ -731,7 +731,7 @@ const PageMe = () => (
             desc: "A specialized compression garment system for children with Sensory Processing Disorders.",
             color: "#FFFFFF",
             tag: "Design",
-            image: "/projects/cauma.jpg",
+            image: "/cauma.jpg",
           },
           {
             id: "generative-art",
@@ -740,7 +740,7 @@ const PageMe = () => (
             desc: "A critique of human agency erosion through AI-generated propaganda and linguistic decay.",
             color: "#FFFFFF",
             tag: "Design",
-            image: "/projects/rendicion.jpg",
+            image: "/rendicion.jpg",
           },
         ].map(card => (
           <div
