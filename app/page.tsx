@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FileText, ExternalLink, Cpu, BookOpen, X, Download, Mail, Linkedin } from "lucide-react";
 
@@ -12,6 +11,13 @@ const T = {
   accent: "#6A7B8C",
   border: "#C8D2D9",
   white: "#FFFFFF",
+};
+
+// ── Gallery Helpers ───────────────────────────────────────────
+const getImageUrl = (path: string) => {
+  // This is a dummy function to maintain logic while files are handled via Git.
+  // It returns the path as-is so the code remains correct for the repository.
+  return path;
 };
 
 // ── Google Fonts loader ────────────────────────────────────────
@@ -698,6 +704,7 @@ const PageMe = () => (
             desc: "An evaluative framework analyzing how generative AI reshapes the way designers think and create.",
             color: "#FFFFFF",
             tag: "Research",
+            image: "/projects/ideai.jpg",
           },
           {
             id: "munchen",
@@ -706,6 +713,7 @@ const PageMe = () => (
             desc: "An offline-first companion bridging the gap between maps and local knowledge.",
             color: "#FFFFFF",
             tag: "App",
+            image: "/projects/munchen.jpg",
           },
           {
             id: "mia",
@@ -714,6 +722,7 @@ const PageMe = () => (
             desc: "An AI-assisted system designed to act as a creative catalyst during early-stage ideation.",
             color: "#FFFFFF",
             tag: "AI Models",
+            image: "/projects/mia.jpg",
           },
           {
             id: "cauma",
@@ -722,6 +731,7 @@ const PageMe = () => (
             desc: "A specialized compression garment system for children with Sensory Processing Disorders.",
             color: "#FFFFFF",
             tag: "Design",
+            image: "/projects/cauma.jpg",
           },
           {
             id: "generative-art",
@@ -730,6 +740,7 @@ const PageMe = () => (
             desc: "A critique of human agency erosion through AI-generated propaganda and linguistic decay.",
             color: "#FFFFFF",
             tag: "Design",
+            image: "/projects/rendicion.jpg",
           },
         ].map(card => (
           <div
@@ -745,16 +756,32 @@ const PageMe = () => (
               padding: "48px 40px",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "space-between",
               scrollSnapAlign: "start",
               flexShrink: 0,
               cursor: "none",
             }}
           >
             <div>
-              <div style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: T.accent, marginBottom: 32 }}>
+              <div style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: T.accent, marginBottom: 24 }}>
                 {card.tag}
               </div>
+              {card.image && (
+                <div style={{ 
+                  width: "100%", 
+                  height: 160, 
+                  overflow: "hidden", 
+                  marginBottom: 24,
+                  background: "#D1D1D1",
+                  borderRadius: 2
+                }}>
+                  <img 
+                    src={card.image} 
+                    alt={card.title} 
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              )}
               <h3 className="fraunces" style={{
                 fontSize: 36,
                 fontWeight: 300,
@@ -767,18 +794,6 @@ const PageMe = () => (
               <p style={{ fontSize: 14, lineHeight: 1.7, color: T.accent, fontWeight: 300, maxWidth: 280 }}>
                 {card.desc}
               </p>
-            </div>
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              fontSize: 11,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: T.text,
-            }}>
-              <span>{card.sub}</span>
-              <span style={{ width: 24, height: 1, background: T.text, display: "inline-block" }} />
             </div>
           </div>
         ))}
@@ -1200,25 +1215,17 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
             style={{
               width: "100%",
               height: 160,
-              position: "relative",
               marginBottom: 48,
               borderRadius: 4,
               overflow: "hidden",
               background: `${T.border}22`,
+              backgroundImage: `url(${getImageUrl("/" + p.img)})`,
+              backgroundSize: "cover",
+              backgroundPosition: ["munchen", "ideai", "showcase", "drawer"].includes(p.id) ? "top" : "center",
+              backgroundRepeat: "no-repeat",
+              border: `1px solid ${T.border}44`,
             }}
-          >
-            <Image
-              src={`/${p.img}`}
-              alt={`${p.title} Header`}
-              fill
-              style={{ objectFit: "cover" }}
-              referrerPolicy="no-referrer"
-              onError={(e) => {
-                // Fallback to picsum if local image is missing
-                e.currentTarget.src = `https://picsum.photos/seed/${p.id}/1280/640`;
-              }}
-            />
-          </motion.div>
+          />
 
           <div style={{ borderTop: `1px solid ${T.border}`, marginBottom: 48 }} />
 
@@ -1596,12 +1603,6 @@ const galleryItems = [
 ];
 
 // ── Gallery Helpers ───────────────────────────────────────────
-const getImageUrl = (path: string) => {
-  // This is a dummy function to maintain logic while files are handled via Git.
-  // It returns the path as-is so the code remains correct for the repository.
-  return path;
-};
-
 const PageGallery = () => {
   const [hoveredFrag, setHoveredFrag] = useState<number | null>(null);
 
