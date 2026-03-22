@@ -234,7 +234,7 @@ const FontLoader = () => (
 );
 
 // ── Custom Cursor ──────────────────────────────────────────────
-const Cursor = () => {
+const Cursor = ({ hidden }: { hidden?: boolean }) => {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const pos = useRef({ x: 0, y: 0 });
@@ -273,8 +273,16 @@ const Cursor = () => {
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot" />
-      <div ref={ringRef} className="cursor-ring" />
+      <div 
+        ref={dotRef} 
+        className="cursor-dot" 
+        style={{ opacity: hidden ? 0 : 1, transition: "opacity 0.3s ease" }}
+      />
+      <div 
+        ref={ringRef} 
+        className="cursor-ring" 
+        style={{ opacity: hidden ? 0 : 1, transition: "opacity 0.3s ease" }}
+      />
     </>
   );
 };
@@ -1688,6 +1696,7 @@ export default function App() {
   const [subPage, setSubPage] = useState<string | null>(null);
   const [showNav, setShowNav] = useState(false);
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const [isIframeHovered, setIsIframeHovered] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -1727,7 +1736,7 @@ export default function App() {
   return (
     <>
       <FontLoader />
-      <Cursor />
+      <Cursor hidden={isIframeHovered} />
 
       <div style={{ background: T.bg, minHeight: "100vh" }}>
         {showNav && <Nav page={page} setPage={navigateTo} />}
@@ -1759,7 +1768,10 @@ export default function App() {
                 justifyContent: "center",
                 padding: "40px",
               }}
-              onClick={() => setSelectedPdf(null)}
+              onClick={() => {
+                setSelectedPdf(null);
+                setIsIframeHovered(false);
+              }}
             >
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
@@ -1802,7 +1814,10 @@ export default function App() {
                       <Download size={16} /> Download
                     </a>
                     <button
-                      onClick={() => setSelectedPdf(null)}
+                      onClick={() => {
+                        setSelectedPdf(null);
+                        setIsIframeHovered(false);
+                      }}
                       style={{ background: "none", border: "none", color: T.text, cursor: "none" }}
                       data-hover="true"
                     >
@@ -1810,7 +1825,11 @@ export default function App() {
                     </button>
                   </div>
                 </div>
-                <div style={{ flex: 1, background: "#525659" }}>
+                <div 
+                  style={{ flex: 1, background: "#525659" }}
+                  onMouseEnter={() => setIsIframeHovered(true)}
+                  onMouseLeave={() => setIsIframeHovered(false)}
+                >
                   <iframe
                     src={`${selectedPdf}#toolbar=0`}
                     style={{ width: "100%", height: "100%", border: "none" }}
