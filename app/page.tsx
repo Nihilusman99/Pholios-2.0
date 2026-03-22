@@ -144,7 +144,7 @@ const FontLoader = () => (
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      transition: transform 0.1s;
+      transform: translate(-50%, -50%);
     }
     .cursor-ring {
       width: 32px; height: 32px;
@@ -153,10 +153,13 @@ const FontLoader = () => (
       position: fixed;
       pointer-events: none;
       z-index: 9998;
-      transition: width 0.25s, height 0.25s, border-color 0.25s, transform 0.08s;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                  height 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                  border-color 0.4s ease;
     }
     .cursor-ring.expanded {
-      width: 52px; height: 52px;
+      width: 44px; height: 44px;
       border-color: ${T.text};
     }
 
@@ -240,25 +243,58 @@ const Cursor = ({ hidden }: { hidden?: boolean }) => {
   const pos = useRef({ x: 0, y: 0 });
   const ring = useRef({ x: 0, y: 0 });
   const raf = useRef<number | null>(null);
+  const clickablesRef = useRef<DOMRect[]>([]);
 
   useEffect(() => {
+    const updateClickables = () => {
+      const els = document.querySelectorAll('button, a, [data-hover]');
+      clickablesRef.current = Array.from(els).map(el => el.getBoundingClientRect());
+    };
+
+    updateClickables();
+    // Refresh cache on layout changes
+    window.addEventListener('scroll', updateClickables, { passive: true });
+    window.addEventListener('resize', updateClickables);
+    
+    // Also refresh after a short delay to catch dynamic content (like hero transition)
+    const timer = setInterval(updateClickables, 2000);
+
     const onMove = (e: MouseEvent) => {
       pos.current = { x: e.clientX, y: e.clientY };
       if (dotRef.current) {
-        dotRef.current.style.left = `${e.clientX - 3}px`;
-        dotRef.current.style.top = `${e.clientY - 3}px`;
+        dotRef.current.style.left = `${e.clientX}px`;
+        dotRef.current.style.top = `${e.clientY}px`;
       }
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      const hovering = el && (el.closest("button, a, [data-hover]"));
-      if (ringRef.current) ringRef.current.classList.toggle("expanded", !!hovering);
+
+      // Proximity logic
+      let minDist = 9999;
+      clickablesRef.current.forEach(rect => {
+        const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
+        const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < minDist) minDist = dist;
+      });
+
+      if (ringRef.current) {
+        const threshold = 80; // Distance to start growing
+        const isHovering = minDist === 0;
+        
+        // Calculate scale: 1.0 at threshold, 1.375 (44/32) at 0
+        const proximity = Math.max(0, (threshold - minDist) / threshold);
+        const scale = 1 + (proximity * 0.375);
+        
+        ringRef.current.style.width = `${32 * scale}px`;
+        ringRef.current.style.height = `${32 * scale}px`;
+        ringRef.current.style.borderColor = isHovering ? T.text : T.accent;
+      }
     };
 
     const animate = () => {
-      ring.current.x += (pos.current.x - ring.current.x) * 0.12;
-      ring.current.y += (pos.current.y - ring.current.y) * 0.12;
+      ring.current.x += (pos.current.x - ring.current.x) * 0.15;
+      ring.current.y += (pos.current.y - ring.current.y) * 0.15;
       if (ringRef.current) {
-        ringRef.current.style.left = `${ring.current.x - 16}px`;
-        ringRef.current.style.top = `${ring.current.y - 16}px`;
+        ringRef.current.style.left = `${ring.current.x}px`;
+        ringRef.current.style.top = `${ring.current.y}px`;
       }
       raf.current = requestAnimationFrame(animate);
     };
@@ -267,6 +303,9 @@ const Cursor = ({ hidden }: { hidden?: boolean }) => {
     raf.current = requestAnimationFrame(animate);
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener('scroll', updateClickables);
+      window.removeEventListener('resize', updateClickables);
+      clearInterval(timer);
       if (raf.current) cancelAnimationFrame(raf.current);
     };
   }, []);
@@ -281,7 +320,10 @@ const Cursor = ({ hidden }: { hidden?: boolean }) => {
       <div 
         ref={ringRef} 
         className="cursor-ring" 
-        style={{ opacity: hidden ? 0 : 1, transition: "opacity 0.3s ease" }}
+        style={{ 
+          opacity: hidden ? 0 : 1, 
+          transition: "opacity 0.3s ease, border-color 0.4s ease" 
+        }}
       />
     </>
   );
@@ -312,14 +354,15 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
       targetY: 0,
     }));
 
-    // Assign grid targets
-    const cols = 8, rows = 7;
-    const gw = W * 0.6, gh = H * 0.5;
-    const sx = (W - gw) / 2, sy = (H - gh) / 2;
+    // Assign Nautilus targets
+    const centerX = W / 2;
+    const centerY = H / 2;
     dotsRef.current.forEach((d, i) => {
-      const col = i % cols, row = Math.floor(i / cols);
-      d.targetX = sx + (col / (cols - 1)) * gw;
-      d.targetY = sy + (row / (rows - 1)) * gh;
+      // Nautilus / Golden Spiral approximation
+      const angle = i * 0.4;
+      const r = 5 * Math.pow(1.09, i);
+      d.targetX = centerX + r * Math.cos(angle);
+      d.targetY = centerY + r * Math.sin(angle);
     });
   }, []);
 
@@ -348,8 +391,8 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
       // Move dots
       dots.forEach(d => {
         if (isSnapped) {
-          d.x += (d.targetX - d.x) * 0.04;
-          d.y += (d.targetY - d.y) * 0.04;
+          d.x += (d.targetX - d.x) * 0.05;
+          d.y += (d.targetY - d.y) * 0.05;
         } else {
           d.x += d.vx;
           d.y += d.vy;
@@ -378,22 +421,23 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
           });
         });
       } else {
-        // Grid lines
-        const cols = 8;
+        // Nautilus lines
         dots.forEach((a, i) => {
-          const right = dots[i + 1];
-          const below = dots[i + cols];
-          const drawLine = (b: any) => {
+          const next = dots[i + 1];
+          const rib1 = dots[i + 8]; 
+          const rib2 = dots[i + 13];
+          const drawLine = (b: any, alpha: number) => {
             if (!b) return;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0,71,171,0.25)`;
+            ctx.strokeStyle = `rgba(0,71,171,${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
             ctx.stroke();
           };
-          if (right && (i + 1) % cols !== 0) drawLine(right);
-          drawLine(below);
+          if (next) drawLine(next, 0.25);
+          if (rib1) drawLine(rib1, 0.15);
+          if (rib2) drawLine(rib2, 0.1);
         });
       }
 
@@ -439,7 +483,7 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
     snappedRef.current = true;
     setSnapped(true);
     setNodeLabels(["Physical", "Cognitive", "Generative", "Tangible"]);
-    setTimeout(() => onComplete(), 1400);
+    setTimeout(() => onComplete(), 2200);
   };
 
   return (
@@ -513,10 +557,10 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
       {/* Floating node labels */}
       {nodeLabels.map((label, i) => {
         const positions = [
-          { top: "28%", left: "20%" },
-          { top: "35%", right: "22%" },
-          { bottom: "30%", left: "24%" },
-          { bottom: "26%", right: "20%" },
+          { top: "18%", left: "18%" },
+          { top: "18%", right: "18%" },
+          { bottom: "18%", left: "18%" },
+          { bottom: "18%", right: "18%" },
         ];
         return (
           <div
