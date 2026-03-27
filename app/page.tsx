@@ -282,7 +282,7 @@ const FontLoader = () => (
     }
 
     /* Mobile Responsiveness */
-    @media (max-width: 768px) {
+    @media (max-width: 1024px), (pointer: coarse) {
       .nav-container { padding: 16px 24px !important; flex-direction: column; gap: 16px; align-items: flex-start !important; }
       .nav-links { gap: 16px !important; flex-wrap: wrap; }
       
@@ -324,12 +324,17 @@ const FontLoader = () => (
       .projects-grid-container { padding: 40px 24px 80px !important; }
       
       .filter-row { padding: 0 24px !important; gap: 16px !important; flex-wrap: wrap; }
+
+      /* Disable project card hover animations on mobile */
+      .proj-card:hover { transform: none !important; box-shadow: none !important; }
+      .proj-card-group:hover .proj-card:not(:hover) { opacity: 1 !important; }
     }
   `}</style>
 );
 
 // ── Custom Cursor ──────────────────────────────────────────────
 const Cursor = ({ hidden }: { hidden?: boolean }) => {
+  const [enabled, setEnabled] = useState(false);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const pos = useRef({ x: 0, y: 0 });
@@ -338,6 +343,13 @@ const Cursor = ({ hidden }: { hidden?: boolean }) => {
   const clickablesRef = useRef<DOMRect[]>([]);
 
   useEffect(() => {
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isTouch) setEnabled(true);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const updateClickables = () => {
       const els = document.querySelectorAll('button, a, [data-hover]');
       clickablesRef.current = Array.from(els).map(el => el.getBoundingClientRect());
@@ -400,7 +412,9 @@ const Cursor = ({ hidden }: { hidden?: boolean }) => {
       clearInterval(timer);
       if (raf.current) cancelAnimationFrame(raf.current);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <>
@@ -483,8 +497,8 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
       // Move dots
       dots.forEach(d => {
         if (isSnapped) {
-          d.x += (d.targetX - d.x) * 0.03;
-          d.y += (d.targetY - d.y) * 0.03;
+          d.x += (d.targetX - d.x) * 0.06;
+          d.y += (d.targetY - d.y) * 0.06;
         } else {
           d.x += d.vx;
           d.y += d.vy;
