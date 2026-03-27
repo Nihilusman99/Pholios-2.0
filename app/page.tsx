@@ -93,6 +93,98 @@ const FontLoader = () => (
       width: 100%;
     }
 
+    /* Responsive */
+    .page-section {
+      padding: 60px 20px !important;
+    }
+    @media (min-width: 768px) {
+      .page-section {
+        padding: 120px 80px !important;
+      }
+    }
+
+    .footer-container {
+      padding: 40px 20px !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+    @media (min-width: 768px) {
+      .footer-container {
+        padding: 40px 80px !important;
+      }
+    }
+
+    .section-marker {
+      position: relative !important;
+      left: 0 !important;
+      top: 0 !important;
+      margin-bottom: 24px !important;
+      text-align: center !important;
+      width: 100% !important;
+      display: block !important;
+    }
+    @media (min-width: 1100px) {
+      .section-marker {
+        position: absolute !important;
+        left: 80px !important;
+        top: 134px !important;
+        margin-bottom: 0 !important;
+        text-align: left !important;
+        width: auto !important;
+      }
+    }
+
+    .nav-container {
+      padding: 20px !important;
+    }
+    @media (min-width: 768px) {
+      .nav-container {
+        padding: 28px 48px !important;
+      }
+    }
+
+    .px-80 {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    @media (min-width: 768px) {
+      .px-80 {
+        padding-left: 80px !important;
+        padding-right: 80px !important;
+      }
+    }
+
+    .page-header {
+      padding: 40px 20px !important;
+    }
+    @media (min-width: 768px) {
+      .page-header {
+        padding: 64px 80px 48px !important;
+      }
+    }
+
+    .section-divider {
+      margin: 0 20px !important;
+    }
+    @media (min-width: 768px) {
+      .section-divider {
+        margin: 0 80px !important;
+      }
+    }
+
+    .grid-3col {
+      grid-template-columns: 1fr !important;
+    }
+    @media (min-width: 768px) {
+      .grid-3col {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+
     /* Reading mode */
     .reading-col {
       max-width: 640px;
@@ -209,7 +301,7 @@ const FontLoader = () => (
       .page-header { padding: 40px 24px 24px !important; }
       .page-content { padding: 0 24px 80px !important; }
       
-      .footer-container { flex-direction: column; align-items: flex-start !important; gap: 24px !important; padding: 40px 24px !important; }
+      .footer-container { flex-direction: column; align-items: center !important; justify-content: center !important; text-align: center !important; gap: 24px !important; padding: 40px 24px !important; }
       
       .masonry { columns: 1 !important; }
       
@@ -391,8 +483,8 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
       // Move dots
       dots.forEach(d => {
         if (isSnapped) {
-          d.x += (d.targetX - d.x) * 0.05;
-          d.y += (d.targetY - d.y) * 0.05;
+          d.x += (d.targetX - d.x) * 0.03;
+          d.y += (d.targetY - d.y) * 0.03;
         } else {
           d.x += d.vx;
           d.y += d.vy;
@@ -483,7 +575,7 @@ const HeroConstellation = ({ onComplete }: { onComplete: () => void }) => {
     snappedRef.current = true;
     setSnapped(true);
     setNodeLabels(["Physical", "Cognitive", "Generative", "Tangible"]);
-    setTimeout(() => onComplete(), 2200);
+    setTimeout(() => onComplete(), 2000);
   };
 
   return (
@@ -598,7 +690,6 @@ const Nav = ({ page, setPage }: { page: string, setPage: (p: string) => void }) 
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      padding: "28px 48px",
       background: `${T.bg}cc`,
       backdropFilter: "blur(12px)",
       WebkitBackdropFilter: "blur(12px)",
@@ -641,23 +732,17 @@ const Nav = ({ page, setPage }: { page: string, setPage: (p: string) => void }) 
 const PageMe = () => (
   <div className="page-enter" style={{ paddingTop: 120 }}>
     {/* Manifesto */}
-    <section className="page-section" style={{ padding: "120px 80px 80px", maxWidth: 1200, margin: "0 auto" }}>
-      <div className="hero-flex" style={{
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 48,
-        marginBottom: 24,
+    <section className="page-section" style={{ maxWidth: 1200, margin: "0 auto", position: "relative" }}>
+      <div className="section-marker" style={{ 
+        fontSize: 10, 
+        letterSpacing: "0.14em", 
+        textTransform: "uppercase", 
+        color: T.accent 
       }}>
-        <div style={{
-          fontSize: 10,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: T.accent,
-          paddingTop: 14,
-          minWidth: 80,
-        }}>
-          §01
-        </div>
+        §01
+      </div>
+      
+      <div style={{ width: "100%" }}>
         <h1 className="fraunces fade-up" style={{
           fontSize: "clamp(28px, 3.5vw, 48px)",
           fontWeight: 300,
@@ -665,16 +750,36 @@ const PageMe = () => (
           letterSpacing: "-0.02em",
           color: T.text,
           maxWidth: 800,
+          marginBottom: 20,
+          textAlign: "center",
+          marginInline: "auto",
         }}>
           Design is the translation between intention and reality. My work explores how interactions across physical objects, digital interfaces, and artificial intelligence enable that translation.
         </h1>
+        
+        <div className="fade-up fade-up-d2" style={{
+          width: "100%",
+          maxWidth: 800,
+          aspectRatio: "30/9",
+          background: `${T.border}22`,
+          borderRadius: 2,
+          overflow: "hidden",
+          marginInline: "auto",
+        }}>
+          <img 
+            src={getImageUrl("/portrait.jpg")} 
+            alt="Diego S. Nava" 
+            style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.95 }}
+            referrerPolicy="no-referrer"
+          />
+        </div>
       </div>
     </section>
 
-    <div className="section-divider" style={{ borderTop: `1px solid ${T.border}`, margin: "0 80px" }} />
+    <div className="section-divider" style={{ borderTop: `1px solid ${T.border}` }} />
 
     {/* Evolution */}
-    <section className="page-section" style={{ padding: "80px 80px", maxWidth: 1200, margin: "0 auto" }}>
+    <section className="page-section" style={{ maxWidth: 1200, margin: "0 auto" }}>
       <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 56 }}>
         <span style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: T.accent }}>§02 — The Evolution</span>
       </div>
@@ -740,15 +845,24 @@ const PageMe = () => (
       </div>
     </section>
 
-    <div className="section-divider" style={{ borderTop: `1px solid ${T.border}`, margin: "0 80px" }} />
+    <div className="section-divider" style={{ borderTop: `1px solid ${T.border}` }} />
 
     {/* Selected Work */}
     <section className="page-section-pt" style={{ padding: "80px 0 120px" }}>
-      <div className="px-80" style={{ padding: "0 80px", marginBottom: 40, display: "flex", alignItems: "center", gap: 8 }}>
+      <div className="px-80" style={{ marginBottom: 40, display: "flex", alignItems: "center", gap: 8 }}>
         <span style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: T.accent }}>§03 — Selected Work</span>
       </div>
-      <div className="h-scroll-track proj-card-group px-80-pb-120" style={{ padding: "0 80px" }}>
+      <div className="h-scroll-track proj-card-group px-80" style={{ paddingBottom: 120 }}>
         {[
+          {
+            id: "living-portfolio",
+            title: "The Living Portfolio",
+            sub: "Vibe Coding & AI Strategy",
+            desc: "A meta-exploration of AI-driven design, showcasing the rapid iteration used to build this very site.",
+            color: "#FFFFFF",
+            tag: "META",
+            image: "Portfolio.jpg",
+          },
           {
             id: "ideai",
             title: "IdeAI",
@@ -860,6 +974,28 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
   const filters = ["All", "Research", "AI Models", "App", "Design"];
 
   const projects = [
+    {
+      id: "living-portfolio",
+      category: "AI Models",
+      title: "The Living Portfolio",
+      subtitle: "Vibe Coding & AI Strategy",
+      desc: "A meta-exploration of AI-driven design, showcasing the rapid iteration and \"vibe coding\" process used to build this very site.",
+      abstract: "This project is the site you are currently navigating. It represents a shift in design methodology—moving from traditional static mockups to a \"living\" development process powered by generative AI and real-time iteration. It serves as both a portfolio and a proof-of-concept for AI-augmented creative workflows.",
+      approach: "By leveraging a \"vibe coding\" approach, I translated high-level aesthetic moods and functional requirements into a production-ready portfolio in a fraction of the time. The process involved deep collaboration with AI to refine typography, constellation-based interactions, and responsive layouts, all while maintaining a cohesive brand identity. This \"conversation-as-code\" method allows for a more fluid and intuitive design-to-development pipeline.",
+      contributions: [
+        "AI-Augmented Design: Used generative AI as a translator for visual intent and a collaborator for code.",
+        "Rapid Prototyping: Moved from concept to deployment through continuous, real-time iteration.",
+        "Interactive Constellation: Developed a custom, physics-based canvas interaction that serves as the site's core visual metaphor."
+      ],
+      tag: "META",
+      color: "#0B2B7A",
+      theme: "dark",
+      wide: true,
+      img: "Portfolio.jpg",
+      links: {
+        live: "#"
+      }
+    },
     {
       id: "wardrobe-os",
       category: "App",
@@ -1271,7 +1407,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
               borderRadius: 4,
               overflow: "hidden",
               background: `${T.border}22`,
-              backgroundImage: `url(${getImageUrl("/" + p.img)})`,
+              backgroundImage: `url(${p.img.startsWith('http') ? p.img : getImageUrl("/" + p.img)})`,
               backgroundSize: "cover",
               backgroundPosition: ["munchen", "ideai", "showcase", "drawer"].includes(p.id) ? "top" : "center",
               backgroundRepeat: "no-repeat",
@@ -1782,7 +1918,7 @@ export default function App() {
       <FontLoader />
       <Cursor hidden={isIframeHovered} />
 
-      <div style={{ background: T.bg, minHeight: "100vh" }}>
+      <div style={{ background: T.bg, minHeight: "100vh", overflowX: "hidden" }}>
         {showNav && <Nav page={page} setPage={navigateTo} />}
 
         {page === "hero" && (
@@ -1889,14 +2025,11 @@ export default function App() {
         {page !== "hero" && (
           <footer className="footer-container" style={{
             borderTop: `1px solid ${T.border}`,
-            padding: "40px 80px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
             gap: 24,
-            textAlign: "center"
+            width: "100%",
+            margin: "0 auto"
           }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "center" }}>
               <span className="fraunces" style={{ fontSize: 16, fontWeight: 300, color: T.text, fontStyle: "italic" }}>
                 MDI Diego S. Nava
               </span>
@@ -1905,12 +2038,12 @@ export default function App() {
               </span>
             </div>
 
-            <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+            <div style={{ display: "flex", gap: 24, alignItems: "center", justifyContent: "center" }}>
               <a 
                 href="mailto:diegos.nava99@gmail.com" 
                 data-hover="true"
                 title="Email"
-                style={{ color: T.accent, transition: "all 0.3s ease", cursor: "none" }}
+                style={{ color: T.accent, transition: "all 0.3s ease", cursor: "none", display: "flex", alignItems: "center", justifyContent: "center" }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = T.text;
                   e.currentTarget.style.transform = "translateY(-2px)";
@@ -1928,7 +2061,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 data-hover="true"
                 title="LinkedIn"
-                style={{ color: T.accent, transition: "all 0.3s ease", cursor: "none" }}
+                style={{ color: T.accent, transition: "all 0.3s ease", cursor: "none", display: "flex", alignItems: "center", justifyContent: "center" }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = T.text;
                   e.currentTarget.style.transform = "translateY(-2px)";
@@ -1942,7 +2075,7 @@ export default function App() {
               </a>
             </div>
 
-            <div style={{ fontSize: 9, color: T.border, letterSpacing: "0.05em", marginTop: 8 }}>
+            <div style={{ fontSize: 9, color: T.border, letterSpacing: "0.05em", marginTop: 8, textAlign: "center" }}>
               &copy; {new Date().getFullYear()} — Designed &amp; Developed with Intention
             </div>
           </footer>
