@@ -1244,20 +1244,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
         paper: "/chamber-documentation.pdf"
       },
       resources: [
-        {
-          title: "Acoustic Resonance Chamber",
-          sub: "Industrial Design",
-          desc: "Technical documentation and design process for the mobile sound isolation system.",
-          link: "/chamber-documentation.pdf",
-          type: "paper"
-        },
-        {
-          title: "Full Project Details",
-          sub: "Behance Showcase",
-          desc: "View high-resolution imagery and detailed process shots on Behance.",
-          link: "https://behance.net/diego-nava",
-          type: "details"
-        }
+        Details to come.
       ]
     },
     {
