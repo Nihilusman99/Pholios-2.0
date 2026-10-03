@@ -1239,13 +1239,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       color: "#0B2B7A",
       theme: "dark",
       img: "AcousticResonanceChamber.jpg",
-      links: {
-        details: "https://behance.net/diego-nava",
-        paper: "/chamber-documentation.pdf"
-      },
-      resources: [
-        Details to come.
-      ]
+      note: "Details to come."
     },
     {
       id: "showcase",
@@ -1265,26 +1259,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       theme: "dark",
       wide: true,
       img: "GalleryShowcase.jpg",
-      links: {
-        details: "https://behance.net/diego-nava",
-        paper: "/showcase-documentation.pdf"
-      },
-      resources: [
-        {
-          title: "Gallery Showcase",
-          sub: "Industrial Design",
-          desc: "Structural engineering and exhibition strategy for the curated display system.",
-          link: "/showcase-documentation.pdf",
-          type: "paper"
-        },
-        {
-          title: "Full Project Details",
-          sub: "Behance Showcase",
-          desc: "View high-resolution imagery and detailed process shots on Behance.",
-          link: "https://behance.net/diego-nava",
-          type: "details"
-        }
-      ]
+      note: "Details to come."
     },
     {
       id: "drawer",
@@ -1303,26 +1278,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
       color: "#0B2B7A",
       theme: "dark",
       img: "WorkshopCabinet.jpg",
-      links: {
-        details: "https://behance.net/diego-nava",
-        paper: "/cabinet-documentation.pdf"
-      },
-      resources: [
-        {
-          title: "Workshop Cabinet",
-          sub: "Industrial Design",
-          desc: "Workflow optimization and digital craftsmanship for the studio storage system.",
-          link: "/cabinet-documentation.pdf",
-          type: "paper"
-        },
-        {
-          title: "Full Project Details",
-          sub: "Behance Showcase",
-          desc: "View high-resolution imagery and detailed process shots on Behance.",
-          link: "https://behance.net/diego-nava",
-          type: "details"
-        }
-      ]
+      note: "Details to come."
     },
     {
       id: "cauma",
