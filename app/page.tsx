@@ -1659,7 +1659,7 @@ const PageProjects = ({ openProject, onOpenPdf }: { openProject: string | null, 
 const PageBackground = () => {
   const objects = [
     { category: "Design", title: "UI / UX Design Specialization", sub: "California Institute of the Arts", desc: "Full-cycle development from wireframing to high-fidelity prototyping for web and mobile user experiences.", tag: "CERTIFICATION · 2026" },
-    { category: "Design", title: "Master in Industrial and Product Design", sub: "National Autonomous University of Mexico (UNAM)", desc: "Honorable Mention. Research on Generative AI integration in creative workflows and strategic decision-making.", tag: "EDUCATION · 2025" },
+    { category: "Design", title: "MSc in Industrial Design", sub: "National Autonomous University of Mexico (UNAM)", desc: "Honorable Mention. Research on Generative AI integration in creative workflows and strategic decision-making.", tag: "EDUCATION · 2025" },
     { category: "Advocacy", title: "AI Applied Workshop Lead", sub: "National Institute of Fine Arts and Literature (INBAL)", desc: "Led the design and implementation of the 'AI Tools for Design Teaching' program. Trained faculty in strategic GenAI and prompt engineering.", tag: "WORK · 2025" },
     { category: "AI", title: "AI Agent Developer", sub: "Vanderbilt University", desc: "Designing and deploying intelligent AI agents. Expertise in agentic architecture and custom GPT development.", tag: "CERTIFICATION · 2025" },
     { category: "AI", title: "Generative AI Data Analyst", sub: "Vanderbilt University", desc: "Automating data tasks and uncovering insights via AI-driven exploration and strategic storytelling.", tag: "CERTIFICATION · 2025" },
